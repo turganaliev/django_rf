@@ -10,6 +10,7 @@ class StudentSerializer(serializers.ModelSerializer):
 
 
 class CourseSerializer(serializers.ModelSerializer):
+    count = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
     class Meta:
         model = Course
-        fields = 'id name grade university'.split()
+        fields = 'id name grade university count'.split()

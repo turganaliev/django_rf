@@ -10,7 +10,7 @@ class Course(models.Model):
 
 
 class Student(models.Model):
-    course = models.ForeignKey(Course, null=True, on_delete=SET_NULL)
+    course = models.ForeignKey(Course, null=True, on_delete=SET_NULL, related_name='count')
     name = models.CharField(max_length=100)
     age = models.IntegerField()
 
