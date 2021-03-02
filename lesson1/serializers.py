@@ -10,7 +10,11 @@ class StudentSerializer(serializers.ModelSerializer):
 
 
 class CourseSerializer(serializers.ModelSerializer):
-    count = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+    count = serializers.SerializerMethodField()
     class Meta:
         model = Course
         fields = 'id name grade university count'.split()
+
+    def get_count(self, obj):
+        count = Student.objects.filter(course_id=obj.id).count()
+        return count
